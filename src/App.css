@@ -284,8 +284,12 @@
 }
 
 .about-section {
-  display: block;
-  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 4rem 2rem;
   background: transparent;
   max-width: 1200px;
   margin: 0 auto;
@@ -307,7 +311,7 @@
 .about-content {
   max-width: 800px;
   width: 100%;
-  margin: 0 auto 4rem auto;
+  margin-bottom: 3rem;
   text-align: left;
   position: relative;
   overflow: hidden;
@@ -385,8 +389,9 @@
 }
 
 .info-cards-section {
-  margin: 4rem auto;
+  margin: 3rem auto;
   max-width: 1200px;
+  width: 100%;
 }
 
 .cards-grid {
@@ -457,8 +462,9 @@
 }
 
 .timeline-section {
-  margin: 4rem auto;
+  margin: 3rem auto 0;
   max-width: 700px;
+  width: 100%;
 }
 
 .section-subtitle {

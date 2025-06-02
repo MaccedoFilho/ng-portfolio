@@ -332,19 +332,22 @@ function App() {
           <h2 className="about-title">Sobre Mim</h2>
           <div className="about-text">
             <p className="interactive-paragraph">
-              Sou desenvolvedor <span className="highlight-word" data-info="Desenvolvimento completo de aplicações web">Full Stack</span> apaixonado por criar 
-              <span className="highlight-word" data-info="Interfaces modernas e funcionais"> soluções digitais</span> inovadoras e funcionais. 
-              Com experiência em <span className="highlight-word" data-info="React, Node.js, TypeScript, Python">tecnologias modernas</span>, 
-              busco sempre entregar projetos que combine <span className="highlight-word" data-info="Otimização e velocidade">performance</span>, 
-              <span className="highlight-word" data-info="UX/UI nDesign">usabilidade</span> e <span className="highlight-word" data-info="Interfaces elegantes">design elegante</span>.
+              Me chamo <span className="highlight-word" data-info="Ricardo Roberto Macedo Filho">Ricardo Roberto Macedo Filho</span>, tenho 
+              <span className="highlight-word" data-info="Nascido em 2006">18 anos</span> e atualmente estou cursando o 
+              <span className="highlight-word" data-info="Graduação em andamento">primeiro período de Engenharia de Software</span>. 
+              Estudo <span className="highlight-word" data-info="Node.js, Python, Java, APIs REST">desenvolvimento back-end</span> e 
+              <span className="highlight-word" data-info="React, TypeScript, Next.js, CSS">front-end</span> há aproximadamente 
+              <span className="highlight-word" data-info="Experiência desde 2022">2 anos</span> e mantenho uma 
+              <span className="highlight-word" data-info="Dedicação e consistência">rotina de estudos bastante ativa</span>, sempre buscando 
+              aprofundar meus conhecimentos e evoluir como desenvolvedor.
             </p>
             <p className="interactive-paragraph">
-              Minha jornada na <span className="highlight-word" data-info="HTML, CSS, JavaScript, React, Node.js">programação</span> começou há alguns anos e desde então venho me especializando 
-              em <span className="highlight-word" data-info="Aplicações web completas">desenvolvimento web</span>, tanto no 
-              <span className="highlight-word" data-info="React, Vue.js, TypeScript">frontend</span> quanto no 
-              <span className="highlight-word" data-info="Node.js, Python, APIs, Databases">backend</span>, sempre mantendo o foco 
-              na <span className="highlight-word" data-info="Clean Code, Best Practices">qualidade do código</span> e na 
-              <span className="highlight-word" data-info="Interface intuitiva e responsiva">experiência do usuário</span>.
+              Tenho grande interesse em construir <span className="highlight-word" data-info="Arquitetura escalável e confiável">sistemas robustos e escaláveis</span>, 
+              com foco especial em <span className="highlight-word" data-info="Clean Code, SOLID, Design Patterns">boas práticas de código</span>, 
+              <span className="highlight-word" data-info="Otimização e velocidade">performance</span> e 
+              <span className="highlight-word" data-info="Estrutura e arquitetura">organização</span>. Estou em 
+              <span className="highlight-word" data-info="Sempre aprendendo novas tecnologias">constante aprendizado</span> e aberto a 
+              <span className="highlight-word" data-info="Oportunidades de crescimento">novas oportunidades</span> que me permitam crescer na área da tecnologia.
             </p>
           </div>
         </div>
