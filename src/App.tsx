@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import './App.css'
 
 function App() {
@@ -7,10 +8,19 @@ function App() {
   const descriptionRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const tooltipRef = useRef<HTMLDivElement>(null)
+  const aboutSectionRef = useRef<HTMLDivElement>(null)
+  const aboutContentRef = useRef<HTMLDivElement>(null)
+  const statsRef = useRef<HTMLDivElement>(null)
+  const cardsRef = useRef<HTMLDivElement>(null)
+  const timelineRef = useRef<HTMLDivElement>(null)
 
   const [showTooltip, setShowTooltip] = useState(false)
   const [tooltipContent, setTooltipContent] = useState('')
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 })
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -18,42 +28,224 @@ function App() {
       
       tl.fromTo(nameRef.current, 
         { 
-          opacity: 0, 
-          scale: 0.8,
-          y: 30
+          opacity: 0,
+          scale: 1.2,
+          filter: "blur(10px)"
         },
         { 
-          opacity: 1, 
+          opacity: 1,
           scale: 1,
-          y: 0,
-          duration: 1,
-          ease: "power3.out"
+          filter: "blur(0px)",
+          duration: 1.5,
+          ease: "power2.out"
         }
       )
       
-      .to({}, { duration: 0.5 })
+      .to({}, { duration: 0.4 })
       
       .to(nameRef.current, {
         x: -200,
-        duration: 0.8,
+        duration: 1,
         ease: "power2.inOut"
       })
       
       .fromTo(descriptionRef.current,
         {
           opacity: 0,
-          x: 300,
-          scale: 0.9
+          scale: 0.8,
+          filter: "blur(5px)"
         },
         {
           opacity: 1,
-          x: 0,
           scale: 1,
-          duration: 0.8,
+          filter: "blur(0px)",
+          duration: 1,
           ease: "power2.out"
         },
-        "<"
+        "-=0.3"
       )
+
+      ScrollTrigger.create({
+        trigger: aboutSectionRef.current,
+        start: "top 80%",
+        animation: gsap.timeline()
+          .fromTo(aboutContentRef.current,
+            {
+              opacity: 0,
+              y: 150,
+              scale: 0.8,
+              rotationX: 45
+            },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              rotationX: 0,
+              duration: 1.8,
+              ease: "power4.out"
+            }
+          )
+          .fromTo(".about-title",
+            {
+              opacity: 0,
+              rotationY: 90,
+              scale: 0.5,
+              transformOrigin: "center center",
+              filter: "blur(20px)"
+            },
+            {
+              opacity: 1,
+              rotationY: 0,
+              scale: 1,
+              filter: "blur(0px)",
+              duration: 1.5,
+              ease: "elastic.out(1, 0.8)"
+            },
+            "-=1.2"
+          )
+          .fromTo(".about-text p",
+            {
+              opacity: 0,
+              y: 80,
+              rotationX: 45,
+              transformOrigin: "center top",
+              filter: "blur(15px)",
+              scale: 0.9
+            },
+            {
+              opacity: 1,
+              y: 0,
+              rotationX: 0,
+              filter: "blur(0px)",
+              scale: 1,
+              duration: 1.2,
+              ease: "power4.out",
+              stagger: {
+                amount: 0.6,
+                from: "start"
+              }
+            },
+            "-=0.5"
+          )
+          .to(".about-text p .highlight-word",
+            {
+              color: "#a1a1aa",
+              duration: 0.8,
+              ease: "power2.out",
+              stagger: {
+                amount: 1.2,
+                from: "random"
+              }
+            },
+            "-=0.8"
+          )
+      })
+
+      ScrollTrigger.create({
+        trigger: statsRef.current,
+        start: "top 85%",
+        animation: gsap.fromTo(".stat-card",
+          {
+            opacity: 0,
+            y: 60,
+            scale: 0.8
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.8,
+            ease: "back.out(1.7)",
+            stagger: 0.2
+          }
+        )
+      })
+
+      ScrollTrigger.create({
+        trigger: cardsRef.current,
+        start: "top 85%",
+        animation: gsap.timeline()
+          .fromTo(".info-card",
+            {
+              opacity: 0,
+              y: 100,
+              rotationY: 45,
+              scale: 0.8
+            },
+            {
+              opacity: 1,
+              y: 0,
+              rotationY: 0,
+              scale: 1,
+              duration: 1.2,
+              ease: "back.out(1.7)",
+              stagger: {
+                amount: 0.8,
+                from: "center"
+              }
+            }
+          )
+          .fromTo(".info-card",
+            {
+              filter: "brightness(0.5)"
+            },
+            {
+              filter: "brightness(1)",
+              duration: 0.8,
+              ease: "power2.out",
+              stagger: 0.1
+            },
+            "-=0.5"
+          )
+      })
+
+      ScrollTrigger.create({
+        trigger: timelineRef.current,
+        start: "top 85%",
+        animation: gsap.timeline()
+          .fromTo(".section-subtitle",
+            {
+              opacity: 0,
+              scale: 0.5,
+              rotationZ: 10
+            },
+            {
+              opacity: 1,
+              scale: 1,
+              rotationZ: 0,
+              duration: 1,
+              ease: "elastic.out(1, 0.5)"
+            }
+          )
+          .fromTo(".timeline::before",
+            {
+              scaleY: 0,
+              transformOrigin: "top"
+            },
+            {
+              scaleY: 1,
+              duration: 1.5,
+              ease: "power2.out"
+            },
+            "-=0.5"
+          )
+          .fromTo(".timeline-item",
+            {
+              opacity: 0,
+              x: 100,
+              scale: 0.9
+            },
+            {
+              opacity: 1,
+              x: 0,
+              scale: 1,
+              duration: 0.8,
+              ease: "back.out(1.7)",
+              stagger: 0.3
+            },
+            "-=1"
+          )
+      })
 
     }, containerRef)
 
@@ -134,6 +326,93 @@ function App() {
           </div>
         )}
       </div>
+
+      <section ref={aboutSectionRef} className="about-section">
+        <div ref={aboutContentRef} className="about-content">
+          <h2 className="about-title">Sobre Mim</h2>
+          <div className="about-text">
+            <p className="interactive-paragraph">
+              Sou desenvolvedor <span className="highlight-word" data-info="Desenvolvimento completo de aplicações web">Full Stack</span> apaixonado por criar 
+              <span className="highlight-word" data-info="Interfaces modernas e funcionais"> soluções digitais</span> inovadoras e funcionais. 
+              Com experiência em <span className="highlight-word" data-info="React, Node.js, TypeScript, Python">tecnologias modernas</span>, 
+              busco sempre entregar projetos que combine <span className="highlight-word" data-info="Otimização e velocidade">performance</span>, 
+              <span className="highlight-word" data-info="UX/UI nDesign">usabilidade</span> e <span className="highlight-word" data-info="Interfaces elegantes">design elegante</span>.
+            </p>
+            <p className="interactive-paragraph">
+              Minha jornada na <span className="highlight-word" data-info="HTML, CSS, JavaScript, React, Node.js">programação</span> começou há alguns anos e desde então venho me especializando 
+              em <span className="highlight-word" data-info="Aplicações web completas">desenvolvimento web</span>, tanto no 
+              <span className="highlight-word" data-info="React, Vue.js, TypeScript">frontend</span> quanto no 
+              <span className="highlight-word" data-info="Node.js, Python, APIs, Databases">backend</span>, sempre mantendo o foco 
+              na <span className="highlight-word" data-info="Clean Code, Best Practices">qualidade do código</span> e na 
+              <span className="highlight-word" data-info="Interface intuitiva e responsiva">experiência do usuário</span>.
+            </p>
+          </div>
+        </div>
+
+        <div ref={cardsRef} className="info-cards-section">
+          <div className="cards-grid">
+            <div className="info-card">
+              <h3>Design & UI/UX</h3>
+              <p>Criação de interfaces elegantes e intuitivas, sempre pensando na melhor experiência do usuário.</p>
+            </div>
+            <div className="info-card">
+              <h3>Performance</h3>
+              <p>Otimização de aplicações para máxima performance, utilizando as melhores práticas de desenvolvimento.</p>
+            </div>
+            <div className="info-card">
+              <h3>Full Stack</h3>
+              <p>Desenvolvimento completo de aplicações, desde a concepção da ideia até o deploy em produção.</p>
+            </div>
+          </div>
+        </div>
+
+        <div ref={timelineRef} className="timeline-section">
+          <h3 className="section-subtitle">Minha Jornada</h3>
+          <div className="timeline">
+            <div className="timeline-item">
+              <div className="timeline-date">2025</div>
+              <div className="timeline-content">
+                <h4>Desenvolvimento Full Stack</h4>
+                <p>Comecei a estudar angular e me especializando em Java, Spring Boot, APIs REST, Bancos de dados e Microsserviços.</p>
+              </div>
+            </div>
+            <div className="timeline-item">
+              <div className="timeline-date">2024</div>
+              <div className="timeline-content">
+                <h4>Especialização Backend</h4>
+                <p>Foco em desenvolvimento backend, utilizando Java, Spring Boot, APIs REST, Bancos de dados e Microsserviços.</p>
+              </div>
+            </div>
+            <div className="timeline-item">
+              <div className="timeline-date">2023</div>
+              <div className="timeline-content">
+                <h4>Especialização Frontend</h4>
+                <p>Logo após, comecei a estudar JavaScript, TypeScript e React, para me melhorar no desenvolvimento frontend.</p>
+              </div>
+            </div>
+            <div className="timeline-item">
+              <div className="timeline-date">2022</div>
+              <div className="timeline-content">
+                <h4>Primeiro Contato</h4>
+                <p>Descobri minha paixão pela programação e comecei estudando o basíco sobre, que foi algoritmos, lógica de programação, HTML e CSS.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {showTooltip && (
+          <div 
+            ref={tooltipRef}
+            className="tooltip"
+            style={{
+              left: tooltipPosition.x,
+              top: tooltipPosition.y,
+            }}
+          >
+            {tooltipContent}
+          </div>
+        )}
+      </section>
     </div>
   )
 }
