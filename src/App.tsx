@@ -13,10 +13,12 @@ function App() {
   const statsRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<HTMLDivElement>(null)
   const timelineRef = useRef<HTMLDivElement>(null)
+  const projectsRef = useRef<HTMLDivElement>(null)
 
   const [showTooltip, setShowTooltip] = useState(false)
   const [tooltipContent, setTooltipContent] = useState('')
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 })
+  const [activeFilter, setActiveFilter] = useState('todos')
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -247,6 +249,58 @@ function App() {
           )
       })
 
+      ScrollTrigger.create({
+        trigger: projectsRef.current,
+        start: "top 80%",
+        animation: gsap.timeline()
+          .fromTo(".projects-title",
+            {
+              opacity: 0,
+              y: 60,
+              scale: 0.8
+            },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 1.2,
+              ease: "power4.out"
+            }
+          )
+          .fromTo(".filter-buttons .filter-btn",
+            {
+              opacity: 0,
+              y: 30,
+              scale: 0.9
+            },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.8,
+              ease: "back.out(1.7)",
+              stagger: 0.1
+            },
+            "-=0.8"
+          )
+          .fromTo(".project-item",
+            {
+              opacity: 0,
+              y: 80,
+              rotationX: 30
+            },
+            {
+              opacity: 1,
+              y: 0,
+              rotationX: 0,
+              duration: 1,
+              ease: "power3.out",
+              stagger: 0.15
+            },
+            "-=0.6"
+          )
+      })
+
     }, containerRef)
 
     return () => ctx.revert()
@@ -281,6 +335,107 @@ function App() {
       })
     }
   }
+
+  const handleFilterChange = (filter: string) => {
+    setActiveFilter(filter)
+  }
+
+  const projects = [
+    {
+      id: 1,
+      title: "MoneyTracker API",
+      description: "API em Java + Spring Boot para gerenciamento de finanças. Permite cadastrar orçamentos, categorias e transações com persistência segura.",
+      category: "backend",
+      technologies: ["Java", "Spring Boot", "PostgreSQL"],
+      icon: "💰",
+      githubUrl: "https://github.com/MaccedoFilho/moneytracker",
+      projectUrl: "https://github.com/ricardomacedo"
+    },
+    {
+      id: 2,
+      title: "Gestão de Funcionários",
+      description: "Sistema de gerenciamento de funcionários, cargos e departamentos. Permite cadastrar, atualizar e listar registros com persistência em banco relacional.",
+      category: "backend",
+      technologies: ["Java", "Spring Boot", "MySQL"],
+      icon: "👥",
+      githubUrl: "https://github.com/MaccedoFilho/Gestao-de-Funcionarios",
+      projectUrl: "https://github.com/ricardomacedo"
+    },
+    {
+      id: 3,
+      title: "Controle de Faturas",
+      description: "API RESTful desenvolvida para controle de faturas e contas a pagar/receber, com autenticação e integração com banco Oracle.",
+      category: "backend",
+      technologies: ["Java", "Spring Boot", "Oracle"],
+      icon: "📄",
+      githubUrl: "https://github.com/MaccedoFilho/Controle-de-faturas",
+      projectUrl: "https://github.com/ricardomacedo"
+    },
+    {
+      id: 4,
+      title: "Agenda de Tarefas",
+      description: "Gerenciamento de tarefas com criação, edição, remoção e filtros por status. Utiliza Local Storage para persistência.",
+      category: "frontend",
+      technologies: ["HTML", "CSS", "JavaScript"],
+      icon: "📅",
+      githubUrl: "https://github.com/MaccedoFilho/Agenda-de-Tarefas",
+      projectUrl: "https://maccedofilho.github.io/Agenda-de-Tarefas/"
+    },
+    {
+      id: 5,
+      title: "Catálogo de Livros",
+      description: "Aplicação React para listar, buscar e favoritar livros. Gerencia estado e persistência com Local Storage.",
+      category: "frontend",
+      technologies: ["JavaScript", "React", "CSS"],
+      icon: "📚",
+      githubUrl: "https://github.com/MaccedoFilho/Biblioteca-Sapientia",
+      projectUrl: "https://maccedofilho.github.io/Biblioteca-Sapientia/"
+    },
+    {
+      id: 6,
+      title: "Plataforma de Cursos",
+      description: "Interface para plataforma de cursos online com player de vídeo personalizado e layout responsivo.",
+      category: "frontend",
+      technologies: ["TypeScript", "React", "CSS"],
+      icon: "🎓",
+      githubUrl: "https://github.com/MaccedoFilho/CodeMind",
+      projectUrl: "https://maccedofilho.github.io/CodeMind/"
+    },
+    {
+      id: 7,
+      title: "NutriSync",
+      description: "Aplicação full stack para controle de refeições diárias com interface moderna e intuitiva.",
+      category: "fullstack",
+      technologies: ["Next.js", "Tailwind CSS", "React Hook"],
+      icon: "🍎",
+      githubUrl: "https://github.com/MaccedoFilho/NutriSync",
+      projectUrl: "https://nutri-sync-two.vercel.app/"
+    },
+    {
+      id: 8,
+      title: "HypeWear",
+      description: "E-commerce acadêmico para venda de roupas com vitrine de produtos e carrinho de compras.",
+      category: "frontend",
+      technologies: ["HTML", "CSS", "JavaScript"],
+      icon: "👕",
+      githubUrl: "https://github.com/MaccedoFilho/ecommerce-faculdade",
+      projectUrl: "https://maccedofilho.github.io/ecommerce-faculdade/"
+    },
+    {
+      id: 9,
+      title: "Projeto Master",
+      description: "Página institucional para empresa de arquitetura com layout responsivo e comunicação visual profissional.",
+      category: "frontend",
+      technologies: ["Angular", "SCSS", "TypeScript"],
+      icon: "🏗️",
+      githubUrl: "https://github.com/MaccedoFilho/Maste",
+      projectUrl: "https://maccedofilho.github.io/Maste/"
+    }
+  ]
+
+  const filteredProjects = projects.filter(project => 
+    activeFilter === 'todos' || project.category === activeFilter
+  )
 
   return (
     <div ref={containerRef} className="app">
@@ -326,6 +481,75 @@ function App() {
           </div>
         )}
       </div>
+
+      <section ref={projectsRef} className="projects-section">
+        <h2 className="projects-title">Projetos</h2>
+        
+        <div className="filter-buttons">
+          <button 
+            className={`filter-btn ${activeFilter === 'todos' ? 'active' : ''}`}
+            onClick={() => handleFilterChange('todos')}
+          >
+            Todos
+          </button>
+          <button 
+            className={`filter-btn ${activeFilter === 'frontend' ? 'active' : ''}`}
+            onClick={() => handleFilterChange('frontend')}
+          >
+            Frontend
+          </button>
+          <button 
+            className={`filter-btn ${activeFilter === 'backend' ? 'active' : ''}`}
+            onClick={() => handleFilterChange('backend')}
+          >
+            Backend
+          </button>
+          <button 
+            className={`filter-btn ${activeFilter === 'fullstack' ? 'active' : ''}`}
+            onClick={() => handleFilterChange('fullstack')}
+          >
+            Full Stack
+          </button>
+        </div>
+
+        <div className="projects-grid">
+          {filteredProjects.map((project) => (
+            <div key={project.id} className="project-item">
+              <div className="project-icon">{project.icon}</div>
+              <h3 className="project-title">{project.title}</h3>
+              <p className="project-description">{project.description}</p>
+              <div className="project-technologies">
+                {project.technologies.map((tech, index) => (
+                  <span key={index} className="tech-tag">{tech}</span>
+                ))}
+              </div>
+              <div className="project-buttons">
+                <a 
+                  href={project.projectUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="project-btn primary"
+                >
+                  Ver Projeto
+                </a>
+                <a 
+                  href={project.githubUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="project-btn secondary"
+                >
+                  GitHub
+                </a>
+              </div>
+              <div className="project-category">
+                {project.category === 'frontend' && 'Frontend'}
+                {project.category === 'backend' && 'Backend'}
+                {project.category === 'fullstack' && 'Full Stack'}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
       <section ref={aboutSectionRef} className="about-section">
         <div ref={aboutContentRef} className="about-content">
