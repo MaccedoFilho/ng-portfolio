@@ -10,8 +10,8 @@ function App() {
   const tooltipRef = useRef<HTMLDivElement>(null)
   const aboutSectionRef = useRef<HTMLDivElement>(null)
   const aboutContentRef = useRef<HTMLDivElement>(null)
-  const statsRef = useRef<HTMLDivElement>(null)
   const cardsRef = useRef<HTMLDivElement>(null)
+  const skillsRef = useRef<HTMLDivElement>(null)
   const timelineRef = useRef<HTMLDivElement>(null)
   const projectsRef = useRef<HTMLDivElement>(null)
   const contactRef = useRef<HTMLDivElement>(null)
@@ -145,26 +145,6 @@ function App() {
       })
 
       ScrollTrigger.create({
-        trigger: statsRef.current,
-        start: "top 85%",
-        animation: gsap.fromTo(".stat-card",
-          {
-            opacity: 0,
-            y: 60,
-            scale: 0.8
-          },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.8,
-            ease: "back.out(1.7)",
-            stagger: 0.2
-          }
-        )
-      })
-
-      ScrollTrigger.create({
         trigger: cardsRef.current,
         start: "top 85%",
         animation: gsap.timeline()
@@ -199,6 +179,61 @@ function App() {
               stagger: 0.1
             },
             "-=0.5"
+          )
+      })
+
+      ScrollTrigger.create({
+        trigger: skillsRef.current,
+        start: "top 85%",
+        animation: gsap.timeline()
+          .fromTo(".skills-title",
+            {
+              opacity: 0,
+              y: 60,
+              scale: 0.8
+            },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 1.2,
+              ease: "power4.out"
+            }
+          )
+          .fromTo(".skill-category",
+            {
+              opacity: 0,
+              y: 80,
+              rotationX: 45
+            },
+            {
+              opacity: 1,
+              y: 0,
+              rotationX: 0,
+              duration: 1,
+              ease: "power3.out",
+              stagger: 0.2
+            },
+            "-=0.8"
+          )
+          .fromTo(".skill-item",
+            {
+              opacity: 0,
+              scale: 0.7,
+              rotationY: 45
+            },
+            {
+              opacity: 1,
+              scale: 1,
+              rotationY: 0,
+              duration: 0.8,
+              ease: "back.out(1.7)",
+              stagger: {
+                amount: 1.2,
+                from: "random"
+              }
+            },
+            "-=0.6"
           )
       })
 
@@ -473,7 +508,7 @@ function App() {
     },
     {
       id: 9,
-      title: "Projeto Master",
+      title: "Projeto Maste",
       description: "Página institucional para empresa de arquitetura com layout responsivo e comunicação visual profissional.",
       category: "frontend",
       technologies: ["Angular", "SCSS", "TypeScript"],
@@ -689,6 +724,102 @@ function App() {
             {tooltipContent}
           </div>
         )}
+      </section>
+
+      <section ref={skillsRef} className="skills-section">
+        <h2 className="skills-title">Habilidades Técnicas</h2>
+        
+        <div className="skills-container">
+          <div className="skill-category">
+            <h3 className="category-title">Linguagens de Programação</h3>
+            <div className="skills-grid">
+              <div className="skill-item">
+                <span className="skill-name">Java</span>
+              </div>
+              <div className="skill-item">
+                <span className="skill-name">Python</span>
+              </div>
+              <div className="skill-item">
+                <span className="skill-name">C</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="skill-category">
+            <h3 className="category-title">Frameworks</h3>
+            <div className="skills-grid">
+              <div className="skill-item">
+                <span className="skill-name">Spring Boot</span>
+              </div>
+              <div className="skill-item">
+                <span className="skill-name">Angular</span>
+              </div>
+              <div className="skill-item">
+                <span className="skill-name">Next.js</span>
+              </div>
+              <div className="skill-item">
+                <span className="skill-name">React</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="skill-category">
+            <h3 className="category-title">Front-end</h3>
+            <div className="skills-grid">
+              <div className="skill-item">
+                <span className="skill-name">HTML</span>
+              </div>
+              <div className="skill-item">
+                <span className="skill-name">CSS</span>
+              </div>
+              <div className="skill-item">
+                <span className="skill-name">JavaScript</span>
+              </div>
+              <div className="skill-item">
+                <span className="skill-name">TypeScript</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="skill-category">
+            <h3 className="category-title">Bancos de Dados</h3>
+            <div className="skills-grid">
+              <div className="skill-item">
+                <span className="skill-name">PostgreSQL</span>
+              </div>
+              <div className="skill-item">
+                <span className="skill-name">MySQL</span>
+              </div>
+              <div className="skill-item">
+                <span className="skill-name">Oracle</span>
+              </div>
+              <div className="skill-item">
+                <span className="skill-name">MongoDB</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="skill-category">
+            <h3 className="category-title">Ferramentas</h3>
+            <div className="skills-grid">
+              <div className="skill-item">
+                <span className="skill-name">Postman</span>
+              </div>
+              <div className="skill-item">
+                <span className="skill-name">Maven</span>
+              </div>
+              <div className="skill-item">
+                <span className="skill-name">Docker</span>
+              </div>
+              <div className="skill-item">
+                <span className="skill-name">Git</span>
+              </div>
+              <div className="skill-item">
+                <span className="skill-name">GitHub</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section ref={contactRef} className="contact-section">
