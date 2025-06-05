@@ -26,7 +26,17 @@ function App() {
   }, [])
 
   useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.innerWidth <= 768
+      if (isMobile && nameRef.current) {
+        gsap.set(nameRef.current, { x: 0, transform: "none" })
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    
     const ctx = gsap.context(() => {
+      const isMobile = window.innerWidth <= 768
       const tl = gsap.timeline()
       
       tl.fromTo(nameRef.current, 
@@ -46,13 +56,15 @@ function App() {
       
       .to({}, { duration: 0.4 })
       
-      .to(nameRef.current, {
-        x: -200,
-        duration: 1,
-        ease: "power2.inOut"
-      })
+      if (!isMobile) {
+        tl.to(nameRef.current, {
+          x: -200,
+          duration: 1,
+          ease: "power2.inOut"
+        })
+      }
       
-      .fromTo(descriptionRef.current,
+      tl.fromTo(descriptionRef.current,
         {
           opacity: 0,
           scale: 0.8,
@@ -65,7 +77,7 @@ function App() {
           duration: 1,
           ease: "power2.out"
         },
-        "-=0.3"
+        isMobile ? "-=1.5" : "-=0.3"
       )
 
       ScrollTrigger.create({
@@ -388,7 +400,10 @@ function App() {
 
     }, containerRef)
 
-    return () => ctx.revert()
+    return () => {
+      ctx.revert()
+      window.removeEventListener('resize', handleResize)
+    }
   }, [])
 
   const handleMouseEnter = (e: React.MouseEvent, content: string) => {
@@ -641,22 +656,22 @@ function App() {
           <h2 className="about-title">Sobre Mim</h2>
           <div className="about-text">
             <p className="interactive-paragraph">
-              Me chamo <span className="highlight-word" data-info="Ricardo Roberto Macedo Filho">Ricardo Roberto Macedo Filho</span>, tenho 
-              <span className="highlight-word" data-info="Nascido em 2006">18 anos</span> e atualmente estou cursando o 
-              <span className="highlight-word" data-info="Graduação em andamento">primeiro período de Engenharia de Software</span>. 
-              Estudo <span className="highlight-word" data-info="Node.js, Python, Java, APIs REST">desenvolvimento back-end</span> e 
-              <span className="highlight-word" data-info="React, TypeScript, Next.js, CSS">front-end</span> há aproximadamente 
-              <span className="highlight-word" data-info="Experiência desde 2022">2 anos</span> e mantenho uma 
-              <span className="highlight-word" data-info="Dedicação e consistência">rotina de estudos bastante ativa</span>, sempre buscando 
+              Me chamo <span className="highlight-word">Ricardo Roberto Macedo Filho</span>, tenho 
+              <span className="highlight-word">18 anos</span> e atualmente estou cursando o 
+              <span className="highlight-word">primeiro período de Engenharia de Software</span>. 
+              Estudo <span className="highlight-word">desenvolvimento back-end</span> e 
+              <span className="highlight-word">front-end</span> há aproximadamente 
+              <span className="highlight-word">2 anos</span> e mantenho uma 
+              <span className="highlight-word">rotina de estudos bastante ativa</span>, sempre buscando 
               aprofundar meus conhecimentos e evoluir como desenvolvedor.
             </p>
             <p className="interactive-paragraph">
-              Tenho grande interesse em construir <span className="highlight-word" data-info="Arquitetura escalável e confiável">sistemas robustos e escaláveis</span>, 
-              com foco especial em <span className="highlight-word" data-info="Clean Code, SOLID, Design Patterns">boas práticas de código</span>, 
-              <span className="highlight-word" data-info="Otimização e velocidade">performance</span> e 
-              <span className="highlight-word" data-info="Estrutura e arquitetura">organização</span>. Estou em 
-              <span className="highlight-word" data-info="Sempre aprendendo novas tecnologias">constante aprendizado</span> e aberto a 
-              <span className="highlight-word" data-info="Oportunidades de crescimento">novas oportunidades</span> que me permitam crescer na área da tecnologia.
+              Tenho grande interesse em construir <span className="highlight-word">sistemas robustos e escaláveis</span>, 
+              com foco especial em <span className="highlight-word">boas práticas de código</span>, 
+              <span className="highlight-word">performance</span> e 
+              <span className="highlight-word">organização</span>. Estou em 
+              <span className="highlight-word">constante aprendizado</span> e aberto a 
+              <span className="highlight-word">novas oportunidades</span> que me permitam crescer na área da tecnologia.
             </p>
           </div>
         </div>
@@ -711,19 +726,6 @@ function App() {
             </div>
           </div>
         </div>
-
-        {showTooltip && (
-          <div 
-            ref={tooltipRef}
-            className="tooltip"
-            style={{
-              left: tooltipPosition.x,
-              top: tooltipPosition.y,
-            }}
-          >
-            {tooltipContent}
-          </div>
-        )}
       </section>
 
       <section ref={skillsRef} className="skills-section">
