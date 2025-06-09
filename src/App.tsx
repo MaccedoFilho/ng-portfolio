@@ -624,14 +624,16 @@ function App() {
                 ))}
               </div>
               <div className="project-buttons">
-                <a 
-                  href={project.projectUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="project-btn primary"
-                >
-                  Ver Projeto
-                </a>
+                {project.category !== 'backend' && (
+                  <a 
+                    href={project.projectUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="project-btn primary"
+                  >
+                    Ver Projeto
+                  </a>
+                )}
                 <a 
                   href={project.githubUrl} 
                   target="_blank" 
