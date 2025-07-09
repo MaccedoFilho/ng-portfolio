@@ -483,13 +483,13 @@ function App() {
     },
     {
       id: 5,
-      title: "Catálogo de Livros",
-      description: "Aplicação React para listar, buscar e favoritar livros. Gerencia estado e persistência com Local Storage.",
+      title: "zonx",
+      description: "Plataforma digital completa com interface moderna e funcionalidades avançadas para experiência do usuário otimizada.",
       category: "frontend",
       technologies: ["JavaScript", "React", "CSS"],
-      icon: "📚",
-      githubUrl: "https://github.com/MaccedoFilho/Biblioteca-Sapientia",
-      projectUrl: "https://maccedofilho.github.io/Biblioteca-Sapientia/"
+      icon: "🚀",
+      githubUrl: "https://github.com/MaccedoFilho/zonx",
+      projectUrl: "https://www.zonx.com.br/"
     },
     {
       id: 6,
