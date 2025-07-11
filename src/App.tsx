@@ -529,7 +529,7 @@ function App() {
       technologies: ["Angular", "SCSS", "TypeScript"],
       icon: "🏗️",
       githubUrl: "https://github.com/MaccedoFilho/Maste",
-      projectUrl: "https://maccedofilho.github.io/Maste/"
+      projectUrl: "https://masteobras.com/"
     }
   ]
 
