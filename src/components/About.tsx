@@ -21,11 +21,11 @@ const About: React.FC<AboutProps> = ({
         <div className="about-text">
           <p className="interactive-paragraph">
             Me chamo <span className="highlight-word">Ricardo Roberto Macedo Filho</span>, tenho 
-            <span className="highlight-word">18 anos</span> e atualmente estou cursando o 
-            <span className="highlight-word">primeiro período de Engenharia de Software</span>. 
+            <span className="highlight-word">19 anos</span> e atualmente estou cursando o 
+            <span className="highlight-word">segundo período de Engenharia de Software</span>. 
             Estudo <span className="highlight-word">desenvolvimento back-end</span> e 
             <span className="highlight-word">front-end</span> há aproximadamente 
-            <span className="highlight-word">2 anos</span> e mantenho uma 
+            <span className="highlight-word">5 anos</span> e mantenho uma 
             <span className="highlight-word">rotina de estudos bastante ativa</span>, sempre buscando 
             aprofundar meus conhecimentos e evoluir como desenvolvedor.
           </p>
@@ -68,21 +68,21 @@ const About: React.FC<AboutProps> = ({
             </div>
           </div>
           <div className="timeline-item">
-            <div className="timeline-date">2024</div>
+            <div className="timeline-date">2023-2024</div>
             <div className="timeline-content">
               <h4>Especialização Backend</h4>
               <p>Foco em desenvolvimento backend, utilizando Java, Spring Boot, APIs REST, Bancos de dados e Microsserviços.</p>
             </div>
           </div>
           <div className="timeline-item">
-            <div className="timeline-date">2023</div>
+            <div className="timeline-date">2021-2022</div>
             <div className="timeline-content">
               <h4>Especialização Frontend</h4>
               <p>Logo após, comecei a estudar JavaScript, TypeScript e React, para me melhorar no desenvolvimento frontend.</p>
             </div>
           </div>
           <div className="timeline-item">
-            <div className="timeline-date">2022</div>
+            <div className="timeline-date">2020</div>
             <div className="timeline-content">
               <h4>Primeiro Contato</h4>
               <p>Descobri minha paixão pela programação e comecei estudando o basíco sobre, que foi algoritmos, lógica de programação, HTML e CSS.</p>

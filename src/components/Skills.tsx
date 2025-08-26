@@ -21,7 +21,7 @@ const Skills: React.FC<SkillsProps> = ({ skillsRef }) => {
               <span className="skill-name">Python</span>
             </div>
             <div className="skill-item">
-              <span className="skill-name">C</span>
+              <span className="skill-name">C++</span>
             </div>
           </div>
         </div>
@@ -97,6 +97,12 @@ const Skills: React.FC<SkillsProps> = ({ skillsRef }) => {
             </div>
             <div className="skill-item">
               <span className="skill-name">GitHub</span>
+            </div>
+            <div className="skill-item">
+              <span className="skill-name">JUnit | Mockito</span>
+            </div>
+            <div className="skill-item">
+              <span className="skill-name">JUnit | Mockito</span>
             </div>
           </div>
         </div>
